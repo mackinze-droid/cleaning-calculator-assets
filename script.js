@@ -1,3 +1,4 @@
+$(document).ready(function() { 
 const form = document.getElementById('estimateForm');
 const serviceAddressSection = document.getElementById('serviceAddressSection');
 const serviceAddressSame = document.getElementById('serviceAddressSame');
@@ -153,3 +154,4 @@ pwSidewalkCheckbox.addEventListener('change', function() {
 pwRoofCheckbox.addEventListener('change', function() {
     roofDetails.style.display = this.checked ? 'block' : 'none';
 });
+}
