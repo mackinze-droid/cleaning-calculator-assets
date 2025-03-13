@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Estimate Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Window Wise Cleaning Estimate Calculator</h1>
+
+    <div class="calculator-container">
+        <form id="estimate-form">
+
+            <h2>Customer Information</h2>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <h2>Services Requested</h2>
+            <div>
+                <input type="checkbox" id="window-cleaning-service" name="services" value="window-cleaning">
+                <label for="window-cleaning-service">Window Cleaning</label>
+            </div>
+            <div>
+                <input type="checkbox" id="pressure-washing-service" name="services" value="pressure-washing">
+                <label for="pressure-washing-service">Pressure Washing</label>
+            </div>
+            <div>
+                <input type="checkbox" id="gutter-cleaning-service" name="services" value="gutter-cleaning">
+                <label for="gutter-cleaning-service">Gutter Cleaning</label>
+            </div>
+            <div>
+                <input type="checkbox" id="roof-cleaning-service" name="services" value="roof-cleaning">
+                <label for="roof-cleaning-service">Roof Cleaning</label>
+            </div>
+
+            <!-- Window Cleaning Details (Conditionally Shown) -->
+            <div id="window-cleaning-details" style="display: none;">
+                <h2>Window Cleaning Details</h2>
+
+                <div>
+                    <label for="double-hung">Double-Hung Windows:</label>
+                    <div class="window-image-container">
+                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/double-hung.jpg" alt="Double-Hung Window" class="window-type-image">
+                    </div>
+                    <input type="number" id="double-hung" name="double-hung" min="0" value="0">
+                </div>
+
+                <div>
+                    <label for="casement">Casement Windows:</label>
+                    <div class="window-image-container">
+                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/casement.jpg" alt="Casement Window" class="window-type-image">
+                    </div>
+                    <input type="number" id="casement" name="casement" min="0" value="0">
+                </div>
+
+                <div>
+                    <label for="picture">Picture Windows:</label>
+                    <div class="window-image-container">
+                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/picture.jpg" alt="Picture Window" class="window-type-image">
+                    </div>
+                    <input type="number" id="picture" name="picture" min="0" value="0">
+                </div>
+
+                <div>
+                    <label for="sliding">Sliding Windows:</label>
+                    <div class="window-image-container">
+                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/sliding.jpg" alt="Sliding Window" class="window-type-image">
+                    </div>
+                    <input type="number" id="sliding" name="sliding" min="0" value="0">
+                </div>
+
+                <div>
+                    <label for="bay">Bay Windows:</label>
+                    <div class="window-image-container">
+                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/bay.jpg" alt="Bay Window" class="window-type-image">
+                    </div>
+                    <input type="number" id="bay" name="bay" min="0" value="0">
+                </div>
+
+                <div>
+                    <label for="specialty">Specialty Windows:</label>
+                    <div class="window-image-container">
+                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/specialty.jpg" alt="Specialty Window" class="window-type-image">
+                    </div>
+                    <input type="number" id="specialty" name="specialty" min="0" value="0">
+                </div>
+
+                <div>
+                    <label for="num-stories">Number of Stories:</label>
+                    <select id="num-stories" name="num-stories">
+                        <option value="1">1 Story</option>
+                        <option value="2">2 Story</option>
+                        <option value="3">3+ Story</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="window-condition">Window Condition:</label>
+                    <select id="window-condition" name="window-condition">
+                        <option value="light">Lightly Soiled</option>
+                        <option value="moderate">Moderately Soiled</option>
+                        <option value="heavy">Heavily Soiled</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Pressure Washing Details (Conditionally Shown) -->
+            <div id="pressure-washing-details" style="display: none;">
+                <h2>Pressure Washing Details</h2>
+
+                <div>
+                    <label>Exterior Cleaning Services:</label>
+                    <div>
+                        <input type="checkbox" id="house-wash" name="pressure-washing-services" value="house-wash">
+                        <label for="house-wash">House Wash</label>
+                    </div>
+                    <div id="house-wash-details" style="display: none;">
+                        <label for="house-surface">House Surface:</label>
+                        <select id="house-surface" name="house-surface">
+                            <option value="vinyl">Vinyl Siding</option>
+                            <option value="brick">Brick</option>
+                            <option value="stucco">Stucco</option>
+                            <option value="wood">Wood Siding</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label for="house-size">House Square Footage:</label>
+                        <input type="number" id="house-size" name="house-size" min="0" value="0">
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="driveway-clean" name="pressure-washing-services" value="driveway-clean">
+                        <label for="driveway-clean">Driveway Cleaning</label>
+                    </div>
+                    <div id="driveway-clean-details" style="display: none;">
+                        <label for="driveway-surface">Driveway Surface:</label>
+                        <select id="driveway-surface" name="driveway-surface">
+                            <option value="concrete">Concrete</option>
+                            <option value="asphalt">Asphalt</option>
+                            <option value="pavers">Pavers</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label for="driveway-size">Driveway Square Footage:</label>
+                        <input type="number" id="driveway-size" name="driveway-size" min="0" value="0">
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="patio-clean" name="pressure-washing-services" value="patio-clean">
+                        <label for="patio-clean">Patio Cleaning</label>
+                    </div>
+                    <div id="patio-clean-details" style="display: none;">
+                        <label for="patio-surface">Patio Surface:</label>
+                        <select id="patio-surface" name="patio-surface">
+                            <option value="concrete">Concrete</option>
+                            <option value="pavers">Pavers</option>
+                            <option value="stone">Stone</option>
+                            <option value="wood">Wood</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label for="patio-size">Patio Square Footage:</label>
+                        <input type="number" id="patio-size" name="patio-size" min="0" value="0">
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="deck-clean" name="pressure-washing-services" value="deck-clean">
+                        <label for="deck-clean">Deck Cleaning</label>
+                    </div>
+                    <div id="deck-clean-details" style="display: none;">
+                        <label for="deck-surface">Deck Surface:</label>
+                        <select id="deck-surface" name="deck-surface">
+                            <option value="wood">Wood</option>
+                            <option value="composite">Composite</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label for="deck-size">Deck Square Footage:</label>
+                        <input type="number" id="deck-size" name="deck-size" min="0" value="0">
+                    </div>
+                    <!-- Add more cleaning service options as needed -->
+                </div>
+            </div>
+
+            <!-- Gutter Cleaning Details (Conditionally Shown) -->
+            <div id="gutter-cleaning-details" style="display: none;">
+                <h2>Gutter Cleaning Details</h2>
+
+                <div>
+                    <label for="gutter-length">Total Gutter Length (feet):</label>
+                    <input type="number" id="gutter-length" name="gutter-length" min="0" value="0">
+                </div>
+
+                <div>
+                    <label for="gutter-condition">Gutter Condition:</label>
+                    <select id="gutter-condition" name="gutter-condition">
+                        <option value="light">Lightly Clogged</option>
+                        <option value="moderate">Moderately Clogged</option>
+                        <option value="heavy">Heavily Clogged</option>
+                    </select>
+                </div>
+                <!-- More gutter cleaning specific fields -->
+            </div>
+
+            <!-- Roof Cleaning Details (Conditionally Shown) -->
+            <div id="roof-cleaning-details" style="display: none;">
+                <h2>Roof Cleaning Details</h2>
+                <div>
+                    <label for="roof-type">Roof Type:</label>
+                    <select id="roof-type" name="roof-type">
+                        <option value="asphalt">Asphalt Shingles</option>
+                        <option value="metal">Metal</option>
+                        <option value="tile">Tile</option>
+                        <option value="wood">Wood Shingles</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="roof-size">Roof Square Footage:</label>
+                    <input type="number" id="roof-size" name="roof-size" min="0" value="0">
+                </div>
+                <div>
+                    <label for="roof-condition">Roof Condition:</label>
+                    <select id="roof-condition" name="roof-condition">
+                        <option value="light">Lightly Soiled</option>
+                        <option value="moderate">Moderately Soiled</option>
+                        <option value="heavy">Heavily Soiled</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Optional Photo Upload -->
+            <div id="photo-upload-section">
+                <h2>Optional Photo Upload</h2>
+                <p>Please upload photos of the areas you would like cleaned. This will help us provide a more accurate estimate.</p>
+                <input type="file" id="photo-upload" name="photo-upload" accept="image/*" multiple>
+                <div id="image-preview">
+                    <!-- Image previews will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Optional Additional Details -->
+            <div id="additional-details-section">
+                <h2>Optional Additional Details</h2>
+                <p>Please provide any additional details or special requests you may have.</p>
+                <textarea id="additional-details" name="additional-details" rows="4" cols="50"></textarea>
+            </div>
+
+            <button type="button" id="calculate-button">Calculate Estimate</button>
+        </form>
+
+        <div id="estimate-result">
+            <p>Estimated Cost: <span id="estimated-cost">$0.00</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

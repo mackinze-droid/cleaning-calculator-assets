@@ -1,0 +1,190 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #343a40;
+    line-height: 1.6;
+}
+
+h1 {
+    text-align: center;
+    margin: 40px 0;
+    color: #007bff;
+    font-weight: 500;
+    font-size: 2.5em;
+}
+
+/* Calculator Container */
+.calculator-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Headers */
+h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    color: #495057;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Form Styling */
+form div {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Input Fields and Select Menus */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #495057;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Window Type Images */
+
+.window-image-container {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    margin: 8px auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+}
+
+.window-type-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+/* Checkbox Styling */
+input[type="checkbox"] {
+    margin-top: 5px;
+}
+
+/* Button Styling */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estimate Result */
+#estimate-result {
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    background-color: #f1f3f5;
+}
+
+#estimated-cost {
+    font-weight: bold;
+    color: #28a745;
+    font-size: 1.2rem;
+}
+
+/* Optional Photo Upload Section */
+#photo-upload-section {
+    margin-top: 30px;
+}
+
+#image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+#image-preview img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Optional Additional Details Section */
+#additional-details-section {
+    margin-top: 30px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #495057;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+}
+
+/* Roof Cleaning Details */
+#roof-cleaning-details {
+    margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calculator-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+}
