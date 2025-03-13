@@ -1,215 +1,155 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const services = [
-        { checkbox: 'window-cleaning-service', details: 'window-cleaning-details', toggle: toggleWindowCleaningDetails },
-        { checkbox: 'pressure-washing-service', details: 'pressure-washing-details', toggle: togglePressureWashingDetails },
-        { checkbox: 'gutter-cleaning-service', details: 'gutter-cleaning-details', toggle: toggleGutterCleaningDetails },
-        { checkbox: 'roof-cleaning-service', details: 'roof-cleaning-details', toggle: toggleRoofCleaningDetails }
-    ];
+const form = document.getElementById('estimateForm');
+const serviceAddressSection = document.getElementById('serviceAddressSection');
+const serviceAddressSame = document.getElementById('serviceAddressSame');
+const windowCleaningSection = document.getElementById('windowCleaningSection');
+const gutterCleaningSection = document.getElementById('gutterCleaningSection');
+const pressureWashingSection = document.getElementById('pressureWashingSection');
+const estimateResultDiv = document.getElementById('estimateResult');
+const estimateAmountP = document.getElementById('estimateAmount');
+const errorMessagesDiv = document.getElementById('errorMessages');
 
-    const pressureWashingServices = [
-        { checkbox: 'house-wash', details: 'house-wash-details', toggle: toggleHouseWashDetails },
-        { checkbox: 'driveway-clean', details: 'driveway-clean-details', toggle: toggleDrivewayCleanDetails },
-        { checkbox: 'patio-clean', details: 'patio-clean-details', toggle: togglePatioCleanDetails },
-        { checkbox: 'deck-clean', details: 'deck-clean-details', toggle: toggleDeckCleanDetails }
-    ];
+//Pressure washing surface detail sections
+const pwHouseCheckbox = document.getElementById('pwHouse');
+const houseDetails = document.getElementById('houseDetails');
+const pwPatioCheckbox = document.getElementById('pwPatio');
+const patioDetails = document.getElementById('patioDetails');
+const pwDeckCheckbox = document.getElementById('pwDeck');
+const deckDetails = document.getElementById('deckDetails');
+const pwDrivewayCheckbox = document.getElementById('pwDriveway');
+const drivewayDetails = document.getElementById('drivewayDetails');
+const pwSidewalkCheckbox = document.getElementById('pwSidewalk');
+const sidewalkDetails = document.getElementById('sidewalkDetails');
+const pwRoofCheckbox = document.getElementById('pwRoof');
+const roofDetails = document.getElementById('roofDetails');
 
-    services.forEach(service => {
-        const checkbox = document.getElementById(service.checkbox);
-        const details = document.getElementById(service.details);
-        if (checkbox) {
-            checkbox.addEventListener('change', service.toggle);
-            service.toggle(); // Initial setup
-        }
-    });
+// Google Apps Script URL (replace with your actual URL)
+const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
 
-    pressureWashingServices.forEach(service => {
-        const checkbox = document.getElementById(service.checkbox);
-        const details = document.getElementById(service.details);
-        if (checkbox) {
-            checkbox.addEventListener('change', service.toggle);
-            service.toggle(); // Initial setup
-        }
-    });
+// Function to display error messages
+function displayError(message) {
+    errorMessagesDiv.style.display = 'block';
+    errorMessagesDiv.querySelector('p').textContent = message;
+}
 
-    function toggleWindowCleaningDetails() {
-        const checkbox = document.getElementById('window-cleaning-service');
-        const details = document.getElementById('window-cleaning-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-        }
+// Function to clear error messages
+function clearErrors() {
+    errorMessagesDiv.style.display = 'none';
+    errorMessagesDiv.querySelector('p').textContent = '';
+}
+
+// Function to validate the form
+function validateForm() {
+    clearErrors();
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const address = document.getElementById('address').value.trim();
+
+    if (!name) {
+        displayError('Please enter your name.');
+        return false;
     }
 
-    function togglePressureWashingDetails() {
-        const checkbox = document.getElementById('pressure-washing-service');
-        const details = document.getElementById('pressure-washing-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-        }
+    if (!phone) {
+        displayError('Please enter your phone number.');
+        return false;
     }
 
-    function toggleGutterCleaningDetails() {
-        const checkbox = document.getElementById('gutter-cleaning-service');
-        const details = document.getElementById('gutter-cleaning-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-        }
+    if (!email) {
+        displayError('Please enter your email address.');
+        return false;
     }
 
-    function toggleRoofCleaningDetails() {
-        const checkbox = document.getElementById('roof-cleaning-service');
-        const details = document.getElementById('roof-cleaning-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-        }
+    if (!address) {
+        displayError('Please enter your address.');
+        return false;
     }
 
-    function toggleHouseWashDetails() {
-        const checkbox = document.getElementById('house-wash');
-        const details = document.getElementById('house-wash-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-            checkbox.setAttribute('aria-expanded', checkbox.checked.toString());
-        }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        displayError('Please enter a valid email address.');
+        return false;
     }
 
-    function toggleDrivewayCleanDetails() {
-        const checkbox = document.getElementById('driveway-clean');
-        const details = document.getElementById('driveway-clean-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-            checkbox.setAttribute('aria-expanded', checkbox.checked.toString());
-        }
+    // Add more validation as needed for other fields
+
+    return true;
+}
+
+// Function to handle form submission
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+        return;
     }
 
-    function togglePatioCleanDetails() {
-        const checkbox = document.getElementById('patio-clean');
-        const details = document.getElementById('patio-clean-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-            checkbox.setAttribute('aria-expanded', checkbox.checked.toString());
-        }
-    }
+    const formData = new FormData(form);
 
-    function toggleDeckCleanDetails() {
-        const checkbox = document.getElementById('deck-clean');
-        const details = document.getElementById('deck-clean-details');
-        if (details) {
-            details.style.display = checkbox.checked ? 'block' : 'none';
-            checkbox.setAttribute('aria-expanded', checkbox.checked.toString());
-        }
-    }
-
-    const photoUpload = document.getElementById('photo-upload');
-    const imagePreview = document.getElementById('image-preview');
-
-    if (photoUpload) {
-        photoUpload.addEventListener('change', displayImagePreview);
-    }
-
-    function displayImagePreview(event) {
-        if (!imagePreview) return;
-        imagePreview.innerHTML = ''; // Clear previous previews
-        const files = event.target.files;
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                imagePreview.appendChild(img);
-            }
-
-            reader.readAsDataURL(file);
-        }
-    }
-
-    const calculateButton = document.getElementById('calculate-button');
-    if (calculateButton) {
-        calculateButton.addEventListener('click', calculateEstimate);
-    }
-
-    function calculateEstimate() {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const address = document.getElementById('address').value;
-        const additionalDetails = document.getElementById('additional-details').value;
-    
-        const uploadedPhotos = photoUpload && photoUpload.files ? photoUpload.files : [];
-    
-        const formDataObject = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            address: document.getElementById('address').value,
-            additionalDetails: document.getElementById('additional-details').value,
-            windowCleaning: document.getElementById('window-cleaning-service').checked,
-            pressureWashing: document.getElementById('pressure-washing-service').checked,
-            gutterCleaning: document.getElementById('gutter-cleaning-service').checked,
-            houseSize: document.getElementById('house-size') ? document.getElementById('house-size').value : '',
-            drivewaySize: document.getElementById('driveway-size') ? document.getElementById('driveway-size').value : '',
-            patioSize: document.getElementById('patio-size') ? document.getElementById('patio-size').value : '',  // Add Patio Size
-            deckSize: document.getElementById('deck-size') ? document.getElementById('deck-size').value : ''    // Add Deck Size
-        };
-    
-        const photoURLs = Array.from(uploadedPhotos).map((file, index) => {
-            // Replace with your actual image upload logic (e.g., uploading to a service like Imgur or AWS S3)
-            return `https://example.com/image-placeholder-${index + 1}.jpg`;
-        });
-    
-        formDataObject.photoURLs = photoURLs.join(',');
-    
-        console.log('Form Data:', formDataObject);
-
-    
-        fetch('https://script.google.com/macros/s/AKfycbzTIhc7kBgvWfrSRLmdUAjGjolAlP19Hz_vOEzFuYw9PTjf2kjuSm9sWuArzHSUn7H0lA/exec', {  // UPDATED URL
+    try {
+        const response = await fetch(scriptURL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formDataObject),
-        })
-        .then(response => {
-            console.log('Response:', response);
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-        })
-        .then(data => {
-            console.log('Data:', data);
-            alert(data.message);
-            const estimatedCostSpan = document.getElementById('estimated-cost');
-            if (estimatedCostSpan) {
-                estimatedCostSpan.textContent = data.estimatedCost;
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while submitting the estimate: ' + error.message);
-            const estimatedCostSpan = document.getElementById('estimated-cost');
-            if (estimatedCostSpan) {
-                estimatedCostSpan.textContent = 'Error!';
-            }
+            body: formData,
         });
-    }
 
-     // Test Button Logic
-     const testButton = document.getElementById('test-button');
-     if (testButton) {
-         testButton.addEventListener('click', function(){
-             fetch('https://script.google.com/macros/s/AKfycbzTIhc7kBgvWfrSRLmdUAjGjolAlP19Hz_vOEzFuYw9PTjf2kjuSm9sWuArzHSUn7H0lA/exec', {  // UPDATED URL
-                 method: 'POST',
-                 headers: {
-                     'Content-Type': 'application/json',
-                 },
-                 body: JSON.stringify({name: "Test Name", testField: "Test Value"}), // Include a simple data object
-             })
-             .then(response => response.json())
-             .then(data => console.log(data));
-         })
-     }
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.result === 'success') {
+            // Display the estimate
+            estimateAmountP.textContent = `Your estimated cost: $${data.estimate}`;
+            estimateResultDiv.style.display = 'block';
+            console.log('Submission successful', data);
+            form.reset(); // Clear the form
+        } else {
+            // Display error message from the script
+            displayError(`Submission failed: ${data.error}`);
+            console.error('Submission failed', data);
+        }
+    } catch (error) {
+        displayError(`Error: ${error.message}`);
+        console.error('Error!', error.message);
+    }
+});
+
+// Event listeners to toggle service address and service sections
+serviceAddressSame.addEventListener('change', function() {
+    serviceAddressSection.style.display = this.checked ? 'none' : 'block';
+});
+
+document.querySelectorAll('input[name="services"]').forEach(service => {
+    service.addEventListener('change', function() {
+        windowCleaningSection.style.display = document.getElementById('windowCleaning').checked ? 'block' : 'none';
+        gutterCleaningSection.style.display = document.getElementById('gutterCleaning').checked ? 'block' : 'none';
+        pressureWashingSection.style.display = document.getElementById('pressureWashing').checked ? 'block' : 'none';
+    });
+});
+
+// Pressure washing surface details toggle
+
+pwHouseCheckbox.addEventListener('change', function() {
+    houseDetails.style.display = this.checked ? 'block' : 'none';
+});
+
+pwPatioCheckbox.addEventListener('change', function() {
+    patioDetails.style.display = this.checked ? 'block' : 'none';
+});
+
+pwDeckCheckbox.addEventListener('change', function() {
+    deckDetails.style.display = this.checked ? 'block' : 'none';
+});
+
+pwDrivewayCheckbox.addEventListener('change', function() {
+    drivewayDetails.style.display = this.checked ? 'block' : 'none';
+});
+
+pwSidewalkCheckbox.addEventListener('change', function() {
+    sidewalkDetails.style.display = this.checked ? 'block' : 'none';
+});
+
+pwRoofCheckbox.addEventListener('change', function() {
+    roofDetails.style.display = this.checked ? 'block' : 'none';
 });
