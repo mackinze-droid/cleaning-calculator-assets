@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         console.log('Form Data:', formDataObject);
     
-        fetch('https://script.google.com/macros/s/AKfycbwb0bojFsXmVWT4vyHd1-DHHS6mImYZBUzmETTv9EYuoXX8SupcfqOxEDTfniC6f-t81Q/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbwzJizkI5tVZM0ylz49qq7loItAODiXMXdHDEt_bgipb-XiNjyIkPNdaUOfWK80aQ4ENA/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
