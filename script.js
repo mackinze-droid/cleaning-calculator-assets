@@ -26,7 +26,7 @@ $(document).ready(function() {
   const roofDetails = document.getElementById('roofDetails');
 
   // --- Google Apps Script URL ---
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxUuFXfSBYbeiZIO-dEfVv60vay-tSJp4e8fY40Chnx1cmoAdJz-ovsHz1vtq--AQrutQ/exec';  // Replace this!
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz-wmSMFBYcAoHvuVQU7vhonXHKMZmzFsSKsBy6imcC8JjIr6fFDNPS5ZkfrpIhssQvSQ/exec';  // Replace this!
   console.log("Script URL:", scriptURL); // Debugging
 
   // --- Helper Functions ---
