@@ -1,7 +1,4 @@
-
-    function toggleHouseWashDetails() {
-        const checkbox = document.getElementById('house-wash');
-        const details = document.gdocument.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const services = [
         { checkbox: 'window-cleaning-service', details: 'window-cleaning-details', toggle: toggleWindowCleaningDetails },
         { checkbox: 'pressure-washing-service', details: 'pressure-washing-details', toggle: togglePressureWashingDetails },
@@ -143,31 +140,31 @@
         const uploadedPhotos = photoUpload && photoUpload.files ? photoUpload.files : [];
     
         const formDataObject = {
-            name,
-            email,
-            phone,
-            address,
-            additionalDetails,
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            additionalDetails: document.getElementById('additional-details').value,
             windowCleaning: document.getElementById('window-cleaning-service').checked,
             pressureWashing: document.getElementById('pressure-washing-service').checked,
             gutterCleaning: document.getElementById('gutter-cleaning-service').checked,
             houseSize: document.getElementById('house-size') ? document.getElementById('house-size').value : '',
-            drivewaySize: document.getElementById('driveway-size') ? document.getElementById('driveway-size').value : ''
+            drivewaySize: document.getElementById('driveway-size') ? document.getElementById('driveway-size').value : '',
+            patioSize: document.getElementById('patio-size') ? document.getElementById('patio-size').value : '',  // Add Patio Size
+            deckSize: document.getElementById('deck-size') ? document.getElementById('deck-size').value : ''    // Add Deck Size
         };
     
         const photoURLs = Array.from(uploadedPhotos).map((file, index) => {
-            return `https://example.com/placeholder-image-${index + 1}.jpg`; // Replace with your image upload logic
+            // Replace with your actual image upload logic (e.g., uploading to a service like Imgur or AWS S3)
+            return `https://example.com/image-placeholder-${index + 1}.jpg`;
         });
     
         formDataObject.photoURLs = photoURLs.join(',');
     
-        console.log('Form Data:', formDataObject); // Added: Logging formDataObject for debugging
-
-        // Log for debugging
         console.log('Form Data:', formDataObject);
 
     
-        fetch('https://script.google.com/macros/s/AKfycbwzJizkI5tVZM0ylz49qq7loItAODiXMXdHDEt_bgipb-XiNjyIkPNdaUOfWK80aQ4ENA/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzTIhc7kBgvWfrSRLmdUAjGjolAlP19Hz_vOEzFuYw9PTjf2kjuSm9sWuArzHSUn7H0lA/exec', {  // UPDATED URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -175,7 +172,7 @@
             body: JSON.stringify(formDataObject),
         })
         .then(response => {
-            console.log('Response:', response);  // Added: Logging response for debugging
+            console.log('Response:', response);
             if (response.ok) {
                 return response.json();
             } else {
@@ -183,7 +180,7 @@
             }
         })
         .then(data => {
-            console.log('Data:', data);  // Added: Logging data for debugging
+            console.log('Data:', data);
             alert(data.message);
             const estimatedCostSpan = document.getElementById('estimated-cost');
             if (estimatedCostSpan) {
@@ -191,7 +188,7 @@
             }
         })
         .catch(error => {
-            console.error('Error:', error);  // Added: Logging error for debugging
+            console.error('Error:', error);
             alert('An error occurred while submitting the estimate: ' + error.message);
             const estimatedCostSpan = document.getElementById('estimated-cost');
             if (estimatedCostSpan) {
@@ -201,16 +198,15 @@
     }
 
      // Test Button Logic
-     // Added: Test button for simplified request testing
      const testButton = document.getElementById('test-button');
      if (testButton) {
          testButton.addEventListener('click', function(){
-             fetch('https://script.google.com/macros/s/AKfycbwzJizkI5tVZM0ylz49qq7loItAODiXMXdHDEt_bgipb-XiNjyIkPNdaUOfWK80aQ4ENA/exec', {
+             fetch('https://script.google.com/macros/s/AKfycbzTIhc7kBgvWfrSRLmdUAjGjolAlP19Hz_vOEzFuYw9PTjf2kjuSm9sWuArzHSUn7H0lA/exec', {  // UPDATED URL
                  method: 'POST',
                  headers: {
                      'Content-Type': 'application/json',
                  },
-                 body: JSON.stringify({name: "Test Name"}),
+                 body: JSON.stringify({name: "Test Name", testField: "Test Value"}), // Include a simple data object
              })
              .then(response => response.json())
              .then(data => console.log(data));
