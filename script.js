@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+
+    function toggleHouseWashDetails() {
+        const checkbox = document.getElementById('house-wash');
+        const details = document.gdocument.addEventListener('DOMContentLoaded', function() {
     const services = [
         { checkbox: 'window-cleaning-service', details: 'window-cleaning-details', toggle: toggleWindowCleaningDetails },
         { checkbox: 'pressure-washing-service', details: 'pressure-washing-details', toggle: togglePressureWashingDetails },
@@ -158,7 +161,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
         formDataObject.photoURLs = photoURLs.join(',');
     
+        console.log('Form Data:', formDataObject); // Added: Logging formDataObject for debugging
+
+        // Log for debugging
         console.log('Form Data:', formDataObject);
+
     
         fetch('https://script.google.com/macros/s/AKfycbwzJizkI5tVZM0ylz49qq7loItAODiXMXdHDEt_bgipb-XiNjyIkPNdaUOfWK80aQ4ENA/exec', {
             method: 'POST',
@@ -168,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify(formDataObject),
         })
         .then(response => {
-            console.log('Response:', response);
+            console.log('Response:', response);  // Added: Logging response for debugging
             if (response.ok) {
                 return response.json();
             } else {
@@ -176,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(data => {
-            console.log('Data:', data);
+            console.log('Data:', data);  // Added: Logging data for debugging
             alert(data.message);
             const estimatedCostSpan = document.getElementById('estimated-cost');
             if (estimatedCostSpan) {
@@ -184,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error:', error);  // Added: Logging error for debugging
             alert('An error occurred while submitting the estimate: ' + error.message);
             const estimatedCostSpan = document.getElementById('estimated-cost');
             if (estimatedCostSpan) {
@@ -192,4 +199,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+     // Test Button Logic
+     // Added: Test button for simplified request testing
+     const testButton = document.getElementById('test-button');
+     if (testButton) {
+         testButton.addEventListener('click', function(){
+             fetch('https://script.google.com/macros/s/AKfycbwzJizkI5tVZM0ylz49qq7loItAODiXMXdHDEt_bgipb-XiNjyIkPNdaUOfWK80aQ4ENA/exec', {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json',
+                 },
+                 body: JSON.stringify({name: "Test Name"}),
+             })
+             .then(response => response.json())
+             .then(data => console.log(data));
+         })
+     }
 });
