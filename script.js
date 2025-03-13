@@ -23,7 +23,7 @@ const pwRoofCheckbox = document.getElementById('pwRoof');
 const roofDetails = document.getElementById('roofDetails');
 
 // Google Apps Script URL (replace with your actual URL)
-const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzJIs2BTuswQYjpEyOogEhULTvPmt_8IDlEy0KDN9fD6fZUJTwYTYEfUv29rH0iL6pGzQ/exec';
 
 // Function to display error messages
 function displayError(message) {
