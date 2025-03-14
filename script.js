@@ -26,7 +26,7 @@ $(document).ready(function() {
     const roofDetails = document.getElementById('roofDetails');
 
     // --- Google Apps Script URL ---
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyQMRCuhlvOwbHk0OjGOzSBj0gWoOtlJ1xCM0Y6HCU1iQjLf8YbduLdVBYVcs0L9dg6tw/exec';  // Replace this!
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzJsLjs0ZBhhQAu-ZvbqvYESxCVKiLopOSdeu78O-nE06HHq6qdGF1beYR8u66AlbpJ3w/exec';  // Replace this!
     console.log("Script URL:", scriptURL); // Debugging
 
     // --- Helper Functions ---
@@ -97,10 +97,26 @@ $(document).ready(function() {
         const formData = new FormData(form);
         console.log("Form data:", formData); //Debugging: This won't show the data well, but confirms FormData object is created.
 
+        // **REVISED: Convert FormData to plain JavaScript object**
+        let object = {};
+        formData.forEach((value, key) => {
+            // If key already exists, we have an array
+            if (object.hasOwnProperty(key)) {
+              if (!Array.isArray(object[key])) {
+                object[key] = [object[key]];
+              }
+              object[key].push(value);
+            } else {
+                object[key] = value;
+            }
+        });
+        let encodedData = new URLSearchParams(object).toString();
+        console.log("Encoded form data", encodedData);
+
         try {
             const response = await fetch(scriptURL, {
                 method: 'POST',
-                body: formData,
+                body: encodedData,
                 headers: {  // Add this headers section
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
