@@ -214,7 +214,3 @@ $(document).ready(function() {
     console.log("Script loaded and event listeners attached.");
 
 }); // End of $(document).ready()
-
-    console.log("Script loaded and event listeners attached."); // Debugging: Confirm script runs
-
-}); // End of $(document).ready()
