@@ -97,26 +97,10 @@ $(document).ready(function() {
         const formData = new FormData(form);
         console.log("Form data:", formData); //Debugging: This won't show the data well, but confirms FormData object is created.
 
-        // **REVISED: Convert FormData to plain JavaScript object**
-        let object = {};
-        formData.forEach((value, key) => {
-            // If key already exists, we have an array
-            if (object.hasOwnProperty(key)) {
-              if (!Array.isArray(object[key])) {
-                object[key] = [object[key]];
-              }
-              object[key].push(value);
-            } else {
-                object[key] = value;
-            }
-        });
-        let encodedData = new URLSearchParams(object).toString();
-        console.log("Encoded form data", encodedData);
-
         try {
             const response = await fetch(scriptURL, {
                 method: 'POST',
-                body: encodedData,
+                body: formData,
                 headers: {  // Add this headers section
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
