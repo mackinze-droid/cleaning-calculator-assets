@@ -26,7 +26,7 @@ $(document).ready(function() {
     const roofDetails = document.getElementById('roofDetails');
 
     // --- Google Apps Script URL ---
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwHmMh5LBOkDYfw0DrldaTMWYPaL3dRb0F3b1JO4VOm7NBm8ZkknMD6Mcsbf_AfsS3-oQ/exec';  // Replace this!
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwXGUkiIfmHxox4oU-vjQvxVjddVL4ET6Lrtg1oFchYYF5zA9O7b7kOORfmlEfXtaI9nA/exec';  // Replace this!
     console.log("Script URL:", scriptURL); // Debugging
 
     // --- Helper Functions ---
@@ -97,15 +97,14 @@ $(document).ready(function() {
         const formData = new FormData(form);
         console.log("Form data:", formData); //Debugging: This won't show the data well, but confirms FormData object is created.
 
+        //*** REVISION START ***
         try {
             const response = await fetch(scriptURL, {
                 method: 'POST',
                 body: formData,
-                headers: {  // Add this headers section
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
+                // Removed headers
             });
-
+        //*** REVISION END ***
             console.log("Fetch response:", response); //Debugging: Check the raw response
 
             if (!response.ok) {
