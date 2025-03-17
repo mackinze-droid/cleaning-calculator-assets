@@ -1,6 +1,7 @@
+--- START OF FILE script.js ---
 $(document).ready(function() {
 
-    // --- DOM Elements --- (unchanged)
+    // --- DOM Elements ---
     const form = document.getElementById('estimateForm');
     const serviceAddressSection = document.getElementById('serviceAddressSection');
     const serviceAddressSame = document.getElementById('serviceAddressSame');
@@ -11,7 +12,7 @@ $(document).ready(function() {
     const estimateAmountP = document.getElementById('estimateAmount');
     const errorMessagesDiv = document.getElementById('errorMessages');
 
-    // Pressure washing surface detail sections (unchanged)
+    // Pressure washing surface detail sections
     const pwHouseCheckbox = document.getElementById('pwHouse');
     const houseDetails = document.getElementById('houseDetails');
     const pwPatioCheckbox = document.getElementById('pwPatio');
@@ -25,11 +26,11 @@ $(document).ready(function() {
     const pwRoofCheckbox = document.getElementById('pwRoof');
     const roofDetails = document.getElementById('roofDetails');
 
-    // --- Google Apps Script URL --- (unchanged)
+    // --- Google Apps Script URL ---
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxFFSeVwvcRTyJG0RMHxxaxD2qOK6LFj43BeI3oJk_Ja0rU6iwIZUv-KNb5DPcU-tmUGQ/exec';  // Replace this!
     console.log("Script URL:", scriptURL); // Debugging
 
-    // --- Helper Functions --- (unchanged)
+    // --- Helper Functions ---
     function displayError(message) {
         console.error("Error:", message);
         errorMessagesDiv.style.display = 'block';
@@ -41,7 +42,7 @@ $(document).ready(function() {
         errorMessagesDiv.querySelector('p').textContent = '';
     }
 
-    function validateForm() { // (unchanged)
+    function validateForm() {
         clearErrors();
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -143,6 +144,8 @@ $(document).ready(function() {
         const formData = new FormData(form);
         formData.append('calculatedEstimate', estimate); // Add calculated estimate to formData
 
+        console.log("formData for submission:", formData); // ***DEBUGGING: Log FormData before fetch***
+
         console.log("Form data for submission:", formData);
 
         try {
@@ -174,7 +177,7 @@ $(document).ready(function() {
         }
     });
 
-    // --- Event Listeners (Service Address, Service Toggles, PW Surface Toggles) --- (unchanged)
+    // --- Event Listeners (Service Address, Service Toggles, PW Surface Toggles) ---
     serviceAddressSame.addEventListener('change', function() {
         serviceAddressSection.style.display = this.checked ? 'none' : 'block';
     });
@@ -214,3 +217,4 @@ $(document).ready(function() {
     console.log("Script loaded and event listeners attached.");
 
 }); // End of $(document).ready()
+--- END OF FILE script.js ---
