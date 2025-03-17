@@ -2,272 +2,199 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Estimate Calculator</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Estimate Calculator</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+  <link rel="stylesheet" href="https://mackinze-droid.github.io/cleaning-calculator-assets/style.css">
 </head>
 
 <body>
+  <div class="container">
+    <h1>Get Your Free Estimate</h1>
+    <form id="estimateForm">
+      <div class="section">
+        <h2>Contact Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
 
-    <h1>Window Wise Cleaning Estimate Calculator</h1>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
 
-    <div class="calculator-container">
-        <form id="estimate-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-            <h2>Customer Information</h2>
-            <div>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <div>
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
-            </div>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
 
-            <h2>Services Requested</h2>
-            <div>
-                <input type="checkbox" id="window-cleaning-service" name="services" value="window-cleaning">
-                <label for="window-cleaning-service">Window Cleaning</label>
-            </div>
-            <div>
-                <input type="checkbox" id="pressure-washing-service" name="services" value="pressure-washing">
-                <label for="pressure-washing-service">Pressure Washing</label>
-            </div>
-            <div>
-                <input type="checkbox" id="gutter-cleaning-service" name="services" value="gutter-cleaning">
-                <label for="gutter-cleaning-service">Gutter Cleaning</label>
-            </div>
-            <div>
-                <input type="checkbox" id="roof-cleaning-service" name="services" value="roof-cleaning">
-                <label for="roof-cleaning-service">Roof Cleaning</label>
-            </div>
+        <label for="serviceAddressSame">Service Address Same as Above?</label>
+        <input type="checkbox" id="serviceAddressSame" name="serviceAddressSame">
+        <br><br>
 
-            <!-- Window Cleaning Details (Conditionally Shown) -->
-            <div id="window-cleaning-details" style="display: none;">
-                <h2>Window Cleaning Details</h2>
-
-                <div>
-                    <label for="double-hung">Double-Hung Windows:</label>
-                    <div class="window-image-container">
-                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/double-hung.jpg" alt="Double-Hung Window" class="window-type-image">
-                    </div>
-                    <input type="number" id="double-hung" name="double-hung" min="0" value="0">
-                </div>
-
-                <div>
-                    <label for="casement">Casement Windows:</label>
-                    <div class="window-image-container">
-                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/casement.jpg" alt="Casement Window" class="window-type-image">
-                    </div>
-                    <input type="number" id="casement" name="casement" min="0" value="0">
-                </div>
-
-                <div>
-                    <label for="picture">Picture Windows:</label>
-                    <div class="window-image-container">
-                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/picture.jpg" alt="Picture Window" class="window-type-image">
-                    </div>
-                    <input type="number" id="picture" name="picture" min="0" value="0">
-                </div>
-
-                <div>
-                    <label for="sliding">Sliding Windows:</label>
-                    <div class="window-image-container">
-                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/sliding.jpg" alt="Sliding Window" class="window-type-image">
-                    </div>
-                    <input type="number" id="sliding" name="sliding" min="0" value="0">
-                </div>
-
-                <div>
-                    <label for="bay">Bay Windows:</label>
-                    <div class="window-image-container">
-                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/bay.jpg" alt="Bay Window" class="window-type-image">
-                    </div>
-                    <input type="number" id="bay" name="bay" min="0" value="0">
-                </div>
-
-                <div>
-                    <label for="specialty">Specialty Windows:</label>
-                    <div class="window-image-container">
-                        <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/specialty.jpg" alt="Specialty Window" class="window-type-image">
-                    </div>
-                    <input type="number" id="specialty" name="specialty" min="0" value="0">
-                </div>
-
-                <div>
-                    <label for="num-stories">Number of Stories:</label>
-                    <select id="num-stories" name="num-stories">
-                        <option value="1">1 Story</option>
-                        <option value="2">2 Story</option>
-                        <option value="3">3+ Story</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="window-condition">Window Condition:</label>
-                    <select id="window-condition" name="window-condition">
-                        <option value="light">Lightly Soiled</option>
-                        <option value="moderate">Moderately Soiled</option>
-                        <option value="heavy">Heavily Soiled</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Pressure Washing Details (Conditionally Shown) -->
-            <div id="pressure-washing-details" style="display: none;">
-                <h2>Pressure Washing Details</h2>
-
-                <div>
-                    <label>Exterior Cleaning Services:</label>
-                    <div>
-                        <input type="checkbox" id="house-wash" name="pressure-washing-services" value="house-wash">
-                        <label for="house-wash">House Wash</label>
-                    </div>
-                    <div id="house-wash-details" style="display: none;">
-                        <label for="house-surface">House Surface:</label>
-                        <select id="house-surface" name="house-surface">
-                            <option value="vinyl">Vinyl Siding</option>
-                            <option value="brick">Brick</option>
-                            <option value="stucco">Stucco</option>
-                            <option value="wood">Wood Siding</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <label for="house-size">House Square Footage:</label>
-                        <input type="number" id="house-size" name="house-size" min="0" value="0">
-                    </div>
-
-                    <div>
-                        <input type="checkbox" id="driveway-clean" name="pressure-washing-services" value="driveway-clean">
-                        <label for="driveway-clean">Driveway Cleaning</label>
-                    </div>
-                    <div id="driveway-clean-details" style="display: none;">
-                        <label for="driveway-surface">Driveway Surface:</label>
-                        <select id="driveway-surface" name="driveway-surface">
-                            <option value="concrete">Concrete</option>
-                            <option value="asphalt">Asphalt</option>
-                            <option value="pavers">Pavers</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <label for="driveway-size">Driveway Square Footage:</label>
-                        <input type="number" id="driveway-size" name="driveway-size" min="0" value="0">
-                    </div>
-
-                    <div>
-                        <input type="checkbox" id="patio-clean" name="pressure-washing-services" value="patio-clean">
-                        <label for="patio-clean">Patio Cleaning</label>
-                    </div>
-                    <div id="patio-clean-details" style="display: none;">
-                        <label for="patio-surface">Patio Surface:</label>
-                        <select id="patio-surface" name="patio-surface">
-                            <option value="concrete">Concrete</option>
-                            <option value="pavers">Pavers</option>
-                            <option value="stone">Stone</option>
-                            <option value="wood">Wood</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <label for="patio-size">Patio Square Footage:</label>
-                        <input type="number" id="patio-size" name="patio-size" min="0" value="0">
-                    </div>
-
-                    <div>
-                        <input type="checkbox" id="deck-clean" name="pressure-washing-services" value="deck-clean">
-                        <label for="deck-clean">Deck Cleaning</label>
-                    </div>
-                    <div id="deck-clean-details" style="display: none;">
-                        <label for="deck-surface">Deck Surface:</label>
-                        <select id="deck-surface" name="deck-surface">
-                            <option value="wood">Wood</option>
-                            <option value="composite">Composite</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <label for="deck-size">Deck Square Footage:</label>
-                        <input type="number" id="deck-size" name="deck-size" min="0" value="0">
-                    </div>
-                    <!-- Add more cleaning service options as needed -->
-                </div>
-            </div>
-
-            <!-- Gutter Cleaning Details (Conditionally Shown) -->
-            <div id="gutter-cleaning-details" style="display: none;">
-                <h2>Gutter Cleaning Details</h2>
-
-                <div>
-                    <label for="gutter-length">Total Gutter Length (feet):</label>
-                    <input type="number" id="gutter-length" name="gutter-length" min="0" value="0">
-                </div>
-
-                <div>
-                    <label for="gutter-condition">Gutter Condition:</label>
-                    <select id="gutter-condition" name="gutter-condition">
-                        <option value="light">Lightly Clogged</option>
-                        <option value="moderate">Moderately Clogged</option>
-                        <option value="heavy">Heavily Clogged</option>
-                    </select>
-                </div>
-                <!-- More gutter cleaning specific fields -->
-            </div>
-
-            <!-- Roof Cleaning Details (Conditionally Shown) -->
-            <div id="roof-cleaning-details" style="display: none;">
-                <h2>Roof Cleaning Details</h2>
-                <div>
-                    <label for="roof-type">Roof Type:</label>
-                    <select id="roof-type" name="roof-type">
-                        <option value="asphalt">Asphalt Shingles</option>
-                        <option value="metal">Metal</option>
-                        <option value="tile">Tile</option>
-                        <option value="wood">Wood Shingles</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="roof-size">Roof Square Footage:</label>
-                    <input type="number" id="roof-size" name="roof-size" min="0" value="0">
-                </div>
-                <div>
-                    <label for="roof-condition">Roof Condition:</label>
-                    <select id="roof-condition" name="roof-condition">
-                        <option value="light">Lightly Soiled</option>
-                        <option value="moderate">Moderately Soiled</option>
-                        <option value="heavy">Heavily Soiled</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Optional Photo Upload -->
-            <div id="photo-upload-section">
-                <h2>Optional Photo Upload</h2>
-                <p>Please upload photos of the areas you would like cleaned. This will help us provide a more accurate estimate.</p>
-                <input type="file" id="photo-upload" name="photo-upload" accept="image/*" multiple>
-                <div id="image-preview">
-                    <!-- Image previews will be displayed here -->
-                </div>
-            </div>
-
-            <!-- Optional Additional Details -->
-            <div id="additional-details-section">
-                <h2>Optional Additional Details</h2>
-                <p>Please provide any additional details or special requests you may have.</p>
-                <textarea id="additional-details" name="additional-details" rows="4" cols="50"></textarea>
-            </div>
-
-            <button type="button" id="calculate-button">Calculate Estimate</button>
-        </form>
-
-        <div id="estimate-result">
-            <p>Estimated Cost: <span id="estimated-cost">$0.00</span></p>
+        <div id="serviceAddressSection" style="display: none;">
+          <label for="serviceAddress">Service Address:</label>
+          <input type="text" id="serviceAddress" name="serviceAddress"><br><br>
         </div>
-    </div>
-    <script src="script.js"></script>
-</body>
+      </div>
 
+      <div class="section">
+        <h2>Services Needed</h2>
+        <input type="checkbox" id="windowCleaning" name="services" value="windowCleaning">
+        <label for="windowCleaning">Window Cleaning</label><br>
+
+        <input type="checkbox" id="pressureWashing" name="services" value="pressureWashing">
+        <label for="pressureWashing">Pressure Washing</label><br>
+
+        <input type="checkbox" id="gutterCleaning" name="services" value="gutterCleaning">
+        <label for="gutterCleaning">Gutter Cleaning</label><br>
+      </div>
+
+      <div id="windowCleaningSection" class="serviceSection" style="display: none;">
+        <h2>Window Cleaning Details</h2>
+        <p>Please provide the number of each window type:</p>
+
+        <div class="window-type">
+          <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/double-hung.jpg" alt="Double-Hung Window" class="window-type-image">
+          <label for="doubleHung">Double-Hung:</label>
+          <input type="number" id="doubleHung" name="doubleHung" value="0" min="0"><br>
+        </div>
+
+        <div class="window-type">
+          <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/bay.jpg" alt="Bay Window" class="window-type-image">
+          <label for="bay">Bay:</label>
+          <input type="number" id="bay" name="bay" value="0" min="0"><br>
+        </div>
+
+        <div class="window-type">
+          <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/specialty.jpg" alt="Specialty Window" class="window-type-image">
+          <label for="specialty">Specialty:</label>
+          <input type="number" id="specialty" name="specialty" value="0" min="0"><br>
+        </div>
+
+        <div class="window-type">
+          <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/sliding.jpg" alt="Sliding Window" class="window-type-image">
+          <label for="sliding">Sliding:</label>
+          <input type="number" id="sliding" name="sliding" value="0" min="0"><br>
+        </div>
+
+        <div class="window-type">
+          <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/casement.jpg" alt="Casement Window" class="window-type-image">
+          <label for="casement">Casement:</label>
+          <input type="number" id="casement" name="casement" value="0" min="0"><br>
+        </div>
+
+        <div class="window-type">
+          <img src="https://mackinze-droid.github.io/cleaning-calculator-assets/images/picture.jpg" alt="Picture Window" class="window-type-image">
+          <label for="picture">Picture:</label>
+          <input type="number" id="picture" name="picture" value="0" min="0"><br>
+        </div>
+      </div>
+
+      <div id="gutterCleaningSection" class="serviceSection" style="display: none;">
+        <h2>Gutter Cleaning Details</h2>
+        <label for="gutterFootage">Gutter Footage (feet):</label>
+        <input type="number" id="gutterFootage" name="gutterFootage" value="0" min="0"><br><br>
+      </div>
+
+      <div id="pressureWashingSection" class="serviceSection" style="display: none;">
+        <h2>Pressure Washing Details</h2>
+        <p>Select the surfaces you need pressure washed:</p>
+
+        <input type="checkbox" id="pwHouse" name="pwSurfaces" value="house">
+        <label for="pwHouse">House</label><br>
+        <div id="houseDetails" class="surfaceDetails" style="display: none;">
+          <label for="houseMaterial">Material:</label>
+          <input type="text" id="houseMaterial" name="houseMaterial"><br>
+          <label for="houseCondition">Condition:</label>
+          <input type="text" id="houseCondition" name="houseCondition"><br>
+          <label for="houseLength">Length (feet):</label>
+          <input type="number" id="houseLength" name="houseLength" min="0" value="0"><br>
+          <label for="houseWidth">Width (feet):</label>
+          <input type="number" id="houseWidth" name="houseWidth" min="0" value="0"><br>
+        </div>
+
+        <input type="checkbox" id="pwPatio" name="pwSurfaces" value="patio">
+        <label for="pwPatio">Patio</label><br>
+        <div id="patioDetails" class="surfaceDetails" style="display: none;">
+          <label for="patioMaterial">Material:</label>
+          <input type="text" id="patioMaterial" name="patioMaterial"><br>
+          <label for="patioCondition">Condition:</label>
+          <input type="text" id="patioCondition" name="patioCondition"><br>
+           <label for="patioLength">Length (feet):</label>
+          <input type="number" id="patioLength" name="patioLength" min="0" value="0"><br>
+          <label for="patioWidth">Width (feet):</label>
+          <input type="number" id="patioWidth" name="patioWidth" min="0" value="0"><br>
+        </div>
+
+        <input type="checkbox" id="pwDeck" name="pwSurfaces" value="deck">
+        <label for="pwDeck">Deck</label><br>
+        <div id="deckDetails" class="surfaceDetails" style="display: none;">
+          <label for="deckMaterial">Material:</label>
+          <input type="text" id="deckMaterial" name="deckMaterial"><br>
+          <label for="deckCondition">Condition:</label>
+          <input type="text" id="deckCondition" name="deckCondition"><br>
+           <label for="deckLength">Length (feet):</label>
+          <input type="number" id="deckLength" name="deckLength" min="0" value="0"><br>
+          <label for="deckWidth">Width (feet):</label>
+          <input type="number" id="deckWidth" name="deckWidth" min="0" value="0"><br>
+        </div>
+
+        <input type="checkbox" id="pwDriveway" name="pwSurfaces" value="driveway">
+        <label for="pwDriveway">Driveway</label><br>
+        <div id="drivewayDetails" class="surfaceDetails" style="display: none;">
+          <label for="drivewayMaterial">Material:</label>
+          <input type="text" id="drivewayMaterial" name="drivewayMaterial"><br>
+          <label for="drivewayCondition">Condition:</label>
+          <input type="text" id="drivewayCondition" name="drivewayCondition"><br>
+           <label for="drivewayLength">Length (feet):</label>
+          <input type="number" id="drivewayLength" name="drivewayLength" min="0" value="0"><br>
+          <label for="drivewayWidth">Width (feet):</label>
+          <input type="number" id="drivewayWidth" name="drivewayWidth" min="0" value="0"><br>
+        </div>
+
+        <input type="checkbox" id="pwSidewalk" name="pwSurfaces" value="sidewalk">
+        <label for="pwSidewalk">Sidewalk</label><br>
+        <div id="sidewalkDetails" class="surfaceDetails" style="display: none;">
+          <label for="sidewalkMaterial">Material:</label>
+          <input type="text" id="sidewalkMaterial" name="sidewalkMaterial"><br>
+          <label for="sidewalkCondition">Condition:</label>
+          <input type="text" id="sidewalkCondition" name="sidewalkCondition"><br>
+           <label for="sidewalkLength">Length (feet):</label>
+          <input type="number" id="sidewalkLength" name="sidewalkLength" min="0" value="0"><br>
+          <label for="sidewalkWidth">Width (feet):</label>
+          <input type="number" id="sidewalkWidth" name="sidewalkWidth" min="0" value="0"><br>
+        </div>
+
+        <input type="checkbox" id="pwRoof" name="pwSurfaces" value="roof">
+        <label for="pwRoof">Roof</label><br>
+        <div id="roofDetails" class="surfaceDetails" style="display: none;">
+          <label for="roofMaterial">Material:</label>
+          <input type="text" id="roofMaterial" name="roofMaterial"><br>
+          <label for="roofCondition">Condition:</label>
+          <input type="text" id="roofCondition" name="roofCondition"><br>
+           <label for="roofLength">Length (feet):</label>
+          <input type="number" id="roofLength" name="roofLength" min="0" value="0"><br>
+          <label for="roofWidth">Width (feet):</label>
+          <input type="number" id="roofWidth" name="roofWidth" min="0" value="0"><br>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Additional Details</h2>
+        <label for="additionalDetails">Additional Details:</label><br>
+        <textarea id="additionalDetails" name="additionalDetails" rows="4" cols="50"></textarea><br><br>
+      </div>
+
+      <button type="submit">Get Estimate</button>
+    </form>
+
+    <div id="estimateResult" style="display: none;">
+      <h2>Your Estimate</h2>
+      <p id="estimateAmount"></p>
+    </div>
+
+    <div id="errorMessages" class="error" style="display: none;">
+      <p></p>
+    </div>
+  </div>
+</body>
+</html>
 </html>
