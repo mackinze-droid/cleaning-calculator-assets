@@ -1,4 +1,3 @@
---- START OF FILE script.js ---
 $(document).ready(function() {
 
     // --- DOM Elements ---
@@ -217,4 +216,3 @@ $(document).ready(function() {
     console.log("Script loaded and event listeners attached.");
 
 }); // End of $(document).ready()
---- END OF FILE script.js ---
