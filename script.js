@@ -1,3 +1,4 @@
+--- START OF FILE script.js ---
 $(document).ready(function() {
 
     // --- DOM Elements ---
@@ -148,16 +149,18 @@ $(document).ready(function() {
         try {
             const response = await fetch(scriptURL, {
                 method: 'POST',
-                headers: { // ***Explicitly set Content-Type header***
+                headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams(formData).toString(), // ***Convert FormData to URL-encoded string***
+                body: new URLSearchParams(formData).toString(),
             });
 
             console.log("Fetch response:", response);
 
             if (!response.ok) {
                 const errorText = await response.text();
+                console.error("HTTP Error Response Status:", response.status); // ***Log response status***
+                console.error("HTTP Error Response Text:", errorText);       // ***Log response text***
                 throw new Error(`HTTP error! status: ${response.status},  text: ${errorText}`);
             }
 
@@ -166,7 +169,7 @@ $(document).ready(function() {
 
             if (data.result === 'success') {
                 console.log('Data submission successful (data storage confirmed)', data);
-                form.reset(); // Clear the form after successful submission
+                form.reset();
             } else {
                 displayError(`Data submission failed: ${data.error}`);
                 console.error('Data submission failed', data);
