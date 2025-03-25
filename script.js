@@ -145,12 +145,13 @@ $(document).ready(function() {
 
         console.log("formData for submission:", formData); // ***DEBUGGING: Log FormData before fetch***
 
-        console.log("Form data for submission:", formData);
-
         try {
             const response = await fetch(scriptURL, {
                 method: 'POST',
-                body: formData,
+                headers: { // ***Explicitly set Content-Type header***
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formData).toString(), // ***Convert FormData to URL-encoded string***
             });
 
             console.log("Fetch response:", response);
