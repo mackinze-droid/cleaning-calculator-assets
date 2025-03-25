@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // --- DOM Elements --- (unchanged)
+    // --- DOM Elements ---
     const form = document.getElementById('estimateForm');
     const serviceAddressSection = document.getElementById('serviceAddressSection');
     const serviceAddressSame = document.getElementById('serviceAddressSame');
@@ -11,7 +11,7 @@ $(document).ready(function() {
     const estimateAmountP = document.getElementById('estimateAmount');
     const errorMessagesDiv = document.getElementById('errorMessages');
 
-    // Pressure washing surface detail sections (unchanged)
+    // Pressure washing surface detail sections
     const pwHouseCheckbox = document.getElementById('pwHouse');
     const houseDetails = document.getElementById('houseDetails');
     const pwPatioCheckbox = document.getElementById('pwPatio');
@@ -25,11 +25,11 @@ $(document).ready(function() {
     const pwRoofCheckbox = document.getElementById('pwRoof');
     const roofDetails = document.getElementById('roofDetails');
 
-    // --- Google Apps Script URL --- (unchanged)
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwf2H6Ar1MX5aBsRnf7d-xDi7oT7gPbrby7YWsgIKzJ7oi_bm_ZrS3irHYiEBeTHMLm/exec';  // Replace this!
+    // --- Google Apps Script URL ---
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxFFSeVwvcRTyJG0RMHxxaxD2qOK6LFj43BeI3oJk_Ja0rU6iwIZUv-KNb5DPcU-tmUGQ/exec';  // Replace this!
     console.log("Script URL:", scriptURL); // Debugging
 
-    // --- Helper Functions --- (unchanged)
+    // --- Helper Functions ---
     function displayError(message) {
         console.error("Error:", message);
         errorMessagesDiv.style.display = 'block';
@@ -41,7 +41,7 @@ $(document).ready(function() {
         errorMessagesDiv.querySelector('p').textContent = '';
     }
 
-    function validateForm() { // (unchanged)
+    function validateForm() {
         clearErrors();
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -72,7 +72,7 @@ $(document).ready(function() {
         return true;
     }
 
-    // --- Event Listeners --- (Form Submission - **MODIFIED for Calculation**)
+    // --- Event Listeners --- (Form Submission - **MODIFIED for Calculation and FormData Logging**)
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -141,6 +141,7 @@ $(document).ready(function() {
         estimateResultDiv.style.display = 'block'; // Show estimate result
 
         const formData = new FormData(form);
+        console.log("FormData entries:", [...formData.entries()]); // **ADDED FormData Logging**
         formData.append('calculatedEstimate', estimate); // Add calculated estimate to formData
 
         console.log("formData for submission:", formData);
