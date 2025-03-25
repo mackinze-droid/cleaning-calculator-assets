@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // --- DOM Elements ---
+    // --- DOM Elements --- (unchanged)
     const form = document.getElementById('estimateForm');
     const serviceAddressSection = document.getElementById('serviceAddressSection');
     const serviceAddressSame = document.getElementById('serviceAddressSame');
@@ -11,7 +11,7 @@ $(document).ready(function() {
     const estimateAmountP = document.getElementById('estimateAmount');
     const errorMessagesDiv = document.getElementById('errorMessages');
 
-    // Pressure washing surface detail sections
+    // Pressure washing surface detail sections (unchanged)
     const pwHouseCheckbox = document.getElementById('pwHouse');
     const houseDetails = document.getElementById('houseDetails');
     const pwPatioCheckbox = document.getElementById('pwPatio');
@@ -25,11 +25,11 @@ $(document).ready(function() {
     const pwRoofCheckbox = document.getElementById('pwRoof');
     const roofDetails = document.getElementById('roofDetails');
 
-    // --- Google Apps Script URL ---
+    // --- Google Apps Script URL --- (unchanged)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxFFSeVwvcRTyJG0RMHxxaxD2qOK6LFj43BeI3oJk_Ja0rU6iwIZUv-KNb5DPcU-tmUGQ/exec';  // Replace this!
     console.log("Script URL:", scriptURL); // Debugging
 
-    // --- Helper Functions ---
+    // --- Helper Functions --- (unchanged)
     function displayError(message) {
         console.error("Error:", message);
         errorMessagesDiv.style.display = 'block';
@@ -41,7 +41,7 @@ $(document).ready(function() {
         errorMessagesDiv.querySelector('p').textContent = '';
     }
 
-    function validateForm() {
+    function validateForm() { // (unchanged)
         clearErrors();
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -137,13 +137,13 @@ $(document).ready(function() {
         }
         // --- **END ESTIMATE CALCULATION** ---
 
-        estimateAmountP.textContent = `Your estimated cost: $${estimate}`; // Display estimate in script.js
+        estimateAmountP.textContent = `Your estimated cost: $${estimate}`; // Display estimate in script.js IMMEDIATELY
         estimateResultDiv.style.display = 'block'; // Show estimate result
 
         const formData = new FormData(form);
         formData.append('calculatedEstimate', estimate); // Add calculated estimate to formData
 
-        console.log("formData for submission:", formData); // ***DEBUGGING: Log FormData before fetch***
+        console.log("formData for submission:", formData);
 
         try {
             const response = await fetch(scriptURL, {
@@ -158,8 +158,8 @@ $(document).ready(function() {
 
             if (!response.ok) {
                 const errorText = await response.text();
-                console.error("HTTP Error Response Status:", response.status); // ***Log response status***
-                console.error("HTTP Error Response Text:", errorText);       // ***Log response text***
+                console.error("HTTP Error Response Status:", response.status);
+                console.error("HTTP Error Response Text:", errorText);
                 throw new Error(`HTTP error! status: ${response.status},  text: ${errorText}`);
             }
 
@@ -168,6 +168,12 @@ $(document).ready(function() {
 
             if (data.result === 'success') {
                 console.log('Data submission successful (data storage confirmed)', data);
+                 // **NEW: Update estimateAmountP.textContent with estimate from response**
+                if (data.estimate !== undefined) {
+                    estimateAmountP.textContent = `Your estimated cost: $${data.estimate}`; // **USE data.estimate!**
+                } else {
+                    console.warn("Estimate not found in response data."); // Warn if estimate is missing
+                }
                 form.reset();
             } else {
                 displayError(`Data submission failed: ${data.error}`);
@@ -179,7 +185,7 @@ $(document).ready(function() {
         }
     });
 
-    // --- Event Listeners (Service Address, Service Toggles, PW Surface Toggles) ---
+    // --- Event Listeners (Service Address, Service Toggles, PW Surface Toggles) --- (unchanged)
     serviceAddressSame.addEventListener('change', function() {
         serviceAddressSection.style.display = this.checked ? 'none' : 'block';
     });
