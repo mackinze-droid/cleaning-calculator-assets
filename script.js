@@ -1,4 +1,3 @@
---- START OF FILE script.js ---
 $(document).ready(function() {
 
     // --- DOM Elements ---
