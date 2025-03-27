@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // --- DOM Elements --- (unchanged)
+    // --- DOM Elements ---
     const form = document.getElementById('estimateForm');
     const serviceAddressSection = document.getElementById('serviceAddressSection');
     const serviceAddressSame = document.getElementById('serviceAddressSame');
@@ -11,7 +11,7 @@ $(document).ready(function() {
     const estimateAmountP = document.getElementById('estimateAmount');
     const errorMessagesDiv = document.getElementById('errorMessages');
 
-    // Pressure washing surface detail sections (unchanged)
+    // Pressure washing surface detail sections
     const pwHouseCheckbox = document.getElementById('pwHouse');
     const houseDetails = document.getElementById('houseDetails');
     const pwPatioCheckbox = document.getElementById('pwPatio');
@@ -25,11 +25,11 @@ $(document).ready(function() {
     const pwRoofCheckbox = document.getElementById('pwRoof');
     const roofDetails = document.getElementById('roofDetails');
 
-    // --- Google Apps Script URL --- (unchanged)
+    // --- Google Apps Script URL ---
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxFFSeVwvcRTyJG0RMHxxaxD2qOK6LFj43BeI3oJk_Ja0rU6iwIZUv-KNb5DPcU-tmUGQ/exec';  // Replace this!
     console.log("Script URL:", scriptURL); // Debugging
 
-    // --- Helper Functions --- (unchanged)
+    // --- Helper Functions ---
     function displayError(message) {
         console.error("Error:", message);
         errorMessagesDiv.style.display = 'block';
@@ -41,7 +41,7 @@ $(document).ready(function() {
         errorMessagesDiv.querySelector('p').textContent = '';
     }
 
-    function validateForm() { // (unchanged)
+    function validateForm() {
         clearErrors();
         const name = document.getElementById('name').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -72,6 +72,23 @@ $(document).ready(function() {
         return true;
     }
 
+    // --- Material Multipliers ---
+    const materialMultipliers = {
+        'Concrete': 1.0,
+        'Pavers': 1.1,
+        'Brick': 1.2,
+        'Stone': 1.2,
+        'Wood Deck': 1.3,
+        'Composite Decking': 1.1,
+        'Vinyl Siding': 0.9,
+        'Aluminum Siding': 1.0,
+        'Stucco': 1.1,
+        'Asphalt Shingles': 1.4,
+        'Tile Roof': 1.5,
+        'Metal Roof': 1.2,
+        'Other': 1.0 // Default or fallback
+    };
+
     // --- Event Listeners --- (Form Submission - **MODIFIED for Calculation**)
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -94,7 +111,8 @@ $(document).ready(function() {
             const sliding = parseInt(document.getElementById('sliding').value) || 0;
             const casement = parseInt(document.getElementById('casement').value) || 0;
             const picture = parseInt(document.getElementById('picture').value) || 0;
-            estimate += (doubleHung * 5) + (bay * 10) + (specialty * 15) + (sliding * 7) + (casement * 8) + (picture * 12); // Example pricing
+            const cutUp = parseInt(document.getElementById('cutUp').value) || 0; // NEW: Get cut-up windows
+            estimate += (doubleHung * 5) + (bay * 10) + (specialty * 15) + (sliding * 7) + (casement * 8) + (picture * 12) + (cutUp * 18); // NEW: Add cut-up window cost (example $18)
         }
         if (services.includes('gutterCleaning')) {
             const gutterFootage = parseInt(document.getElementById('gutterFootage').value) || 0;
@@ -104,44 +122,50 @@ $(document).ready(function() {
             let pwArea = 0;
             const pwSurfaces = Array.from(document.querySelectorAll('input[name="pwSurfaces"]:checked')).map(cb => cb.value);
             if (pwSurfaces.includes('house')) {
-                const houseLength = parseInt(document.getElementById('houseLength').value) || 0;
-                const houseWidth = parseInt(document.getElementById('houseWidth').value) || 0;
-                pwArea += houseLength * houseWidth;
+                const houseSqFt = parseInt(document.getElementById('houseSqFt').value) || 0;
+                const houseMaterial = document.getElementById('houseMaterial').value;
+                const materialMultiplier = materialMultipliers[houseMaterial] || 1.0;
+                pwArea += houseSqFt * materialMultiplier;
             }
             if (pwSurfaces.includes('patio')) {
-                const patioLength = parseInt(document.getElementById('patioLength').value) || 0;
-                const patioWidth = parseInt(document.getElementById('patioWidth').value) || 0;
-                pwArea += patioLength * patioWidth;
+                const patioSqFt = parseInt(document.getElementById('patioSqFt').value) || 0;
+                const patioMaterial = document.getElementById('patioMaterial').value;
+                const materialMultiplier = materialMultipliers[patioMaterial] || 1.0;
+                pwArea += patioSqFt * materialMultiplier;
             }
             if (pwSurfaces.includes('deck')) {
-                const deckLength = parseInt(document.getElementById('deckLength').value) || 0;
-                const deckWidth = parseInt(document.getElementById('deckWidth').value) || 0;
-                pwArea += deckLength * deckWidth;
+                const deckSqFt = parseInt(document.getElementById('deckSqFt').value) || 0;
+                const deckMaterial = document.getElementById('deckMaterial').value;
+                const materialMultiplier = materialMultipliers[deckMaterial] || 1.0;
+                pwArea += deckSqFt * materialMultiplier;
             }
             if (pwSurfaces.includes('driveway')) {
-                const drivewayLength = parseInt(document.getElementById('drivewayLength').value) || 0;
-                const drivewayWidth = parseInt(document.getElementById('drivewayWidth').value) || 0;
-                pwArea += drivewayLength * drivewayWidth;
+                const drivewaySqFt = parseInt(document.getElementById('drivewaySqFt').value) || 0;
+                const drivewayMaterial = document.getElementById('drivewayMaterial').value;
+                const materialMultiplier = materialMultipliers[drivewayMaterial] || 1.0;
+                pwArea += drivewaySqFt * materialMultiplier;
             }
             if (pwSurfaces.includes('sidewalk')) {
-                const sidewalkLength = parseInt(document.getElementById('sidewalkLength').value) || 0;
-                const sidewalkWidth = parseInt(document.getElementById('sidewalkWidth').value) || 0;
-                pwArea += sidewalkLength * sidewalkWidth;
+                const sidewalkSqFt = parseInt(document.getElementById('sidewalkSqFt').value) || 0;
+                const sidewalkMaterial = document.getElementById('sidewalkMaterial').value;
+                const materialMultiplier = materialMultipliers[sidewalkMaterial] || 1.0;
+                pwArea += sidewalkSqFt * materialMultiplier;
             }
             if (pwSurfaces.includes('roof')) {
-                const roofLength = parseInt(document.getElementById('roofLength').value) || 0;
-                const roofWidth = parseInt(document.getElementById('roofWidth').value) || 0;
-                pwArea += roofLength * roofWidth;
+                const roofSqFt = parseInt(document.getElementById('roofSqFt').value) || 0;
+                const roofMaterial = document.getElementById('roofMaterial').value;
+                const materialMultiplier = materialMultipliers[roofMaterial] || 1.0;
+                pwArea += roofSqFt * materialMultiplier;
             }
-            estimate += pwArea * 0.5; // Example pricing per square foot
+            estimate += pwArea * 0.5; // Example pricing per adjusted square foot
         }
         // --- **END ESTIMATE CALCULATION** ---
 
-        estimateAmountP.textContent = `Your estimated cost: $${estimate}`; // Display estimate in script.js IMMEDIATELY
-        estimateResultDiv.style.display = 'block'; // Show estimate result
+        estimateAmountP.textContent = `Your estimated cost: $${estimate}`;
+        estimateResultDiv.style.display = 'block';
 
         const formData = new FormData(form);
-        formData.append('calculatedEstimate', estimate); // Add calculated estimate to formData
+        formData.append('calculatedEstimate', estimate);
 
         console.log("formData for submission:", formData);
 
