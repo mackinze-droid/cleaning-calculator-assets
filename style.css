@@ -1,36 +1,57 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif; /* More modern font */
   margin: 0;
-  padding: 20px;
-  background-color: #f4f4f4;
+  padding: 40px 20px; /* Increased top padding for better spacing */
+  background-color: #f8f9fa; /* Softer background color */
+  color: #343a40; /* Darker, more readable text color */
+  line-height: 1.6; /* Improved line height for readability */
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 850px; /* Slightly wider container */
+  margin: 20px auto; /* Add some margin around container */
+  background-color: #ffffff; /* Pure white container background */
+  padding: 30px; /* Increased padding inside container */
+  border-radius: 8px; /* More rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer box shadow */
 }
 
-h1, h2 {
+h1 {
+  font-size: 2.8em; /* Slightly larger main heading */
   text-align: center;
-  color: #333;
+  color: #212529; /* Darker heading color */
+  margin-bottom: 25px; /* More space below main heading */
+  letter-spacing: -0.02em; /* Slightly tighter letter spacing for headings */
+  font-weight: 700; /* Bold font weight for main heading */
+}
+
+h2 {
+  font-size: 1.8em; /* Reduced size for section headings */
+  text-align: left; /* Align section headings to the left */
+  color: #343a40; /* Consistent heading color */
+  margin-top: 25px; /* Top margin for section headings */
+  margin-bottom: 15px; /* Reduced bottom margin */
+  border-bottom: 2px solid #e0e0e0; /* Subtle bottom border for sections */
+  padding-bottom: 8px; /* Padding below section heading */
+  font-weight: 600; /* Slightly bolder section headings */
 }
 
 .section {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  margin-bottom: 25px; /* Increased section bottom margin */
+  padding: 20px; /* Increased padding inside sections */
+  border: 1px solid #e0e0e0; /* Lighter border color */
+  border-radius: 6px; /* Slightly more rounded section corners */
+  background-color: #fefefe; /* Slightly off-white section background */
 }
 
 label {
   display: inline-block;
-  width: 150px; /* Adjust as needed */
+  width: 180px; /* Increased label width for better alignment */
   text-align: right;
-  margin-right: 10px;
+  margin-right: 15px; /* Increased right margin for label spacing */
+  font-weight: 500; /* Slightly bolder labels */
+  color: #495057; /* Slightly darker label color */
+  margin-bottom: 8px; /* Added bottom margin to labels */
 }
 
 input[type="text"],
@@ -38,68 +59,75 @@ input[type="email"],
 input[type="tel"],
 input[type="number"],
 textarea,
-select { /* Added select here */
-  width: 60%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box; /* Important for width calculation */
+select {
+  width: calc(100% - 205px); /* Adjusted width to account for wider labels and margins */
+  padding: 10px; /* Increased input padding */
+  border: 1px solid #ced4da; /* Softer input border color */
+  border-radius: 5px; /* Rounded input corners */
+  box-sizing: border-box;
+  font-size: 1em; /* Consistent font size for inputs */
+  color: #495057; /* Input text color */
 }
 
 input[type="checkbox"] {
-  margin-right: 5px;
+  margin-right: 8px; /* Slightly increased checkbox margin */
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #007bff; /* Bootstrap primary blue button */
   color: white;
-  padding: 12px 20px;
+  padding: 12px 25px; /* Adjusted button padding */
   border: none;
-  border-radius: 4px;
+  border-radius: 6px; /* Rounded button corners */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.1em; /* Slightly larger button font size */
   display: block;
-  margin: 20px auto;
+  margin: 30px auto; /* Increased button margin */
+  font-weight: 600; /* Bolder button text */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
 }
 
 button:hover {
-  background-color: #3e8e41;
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .serviceSection {
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 5px;
+  margin-top: 15px; /* Increased service section top margin */
+  padding: 15px; /* Increased padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 6px; /* Rounded corners */
+  background-color: #fdfdfd; /* Slightly different background */
 }
 
 .window-type {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* Increased window type margin */
 }
 
-.window-type-image { /* Changed selector and added styles */
-  width: 50px;  /* Adjust as needed */
-  height: 50px; /* Adjust as needed */
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px; /* Added border-radius to match inline styles */
-  object-fit: cover; /* Added object-fit to match inline styles */
+.window-type-image {
+  width: 60px;  /* Slightly larger window images */
+  height: 60px; /* Slightly larger window images */
+  margin-right: 15px; /* Increased image margin */
+  border: 1px solid #ced4da; /* Softer image border */
+  border-radius: 7px; /* Rounded image corners */
+  object-fit: cover;
 }
 
 .surfaceDetails {
-  margin-left: 20px;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 5px;
+  margin-left: 25px; /* Increased surface details margin */
+  padding: 15px; /* Increased padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 6px; /* Rounded corners */
+  background-color: #fdfdfd; /* Slightly different background */
+  margin-top: 10px; /* Added top margin for surface details */
 }
 
 .error {
-  color: red;
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid red;
-  border-radius: 5px;
-  background-color: #ffebee;
+  color: #dc3545; /* Bootstrap danger red for errors */
+  margin-top: 15px; /* Increased error margin */
+  padding: 15px; /* Increased error padding */
+  border: 1px solid #f8d7da; /* Lighter red border */
+  border-radius: 6px; /* Rounded error corners */
+  background-color: #f8d7da; /* Light red error background */
 }
