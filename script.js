@@ -248,4 +248,10 @@ $(document).ready(function() {
 
     console.log("Script loaded and event listeners attached.");
 
+    // --- NEW: Auto-check "Service Address Same as Above?" checkbox on page load ---
+    serviceAddressSame.checked = true;
+    serviceAddressSection.style.display = 'none'; // Initially hide service address section
+    // --- END NEW ---
+
+
 }); // End of $(document).ready()
