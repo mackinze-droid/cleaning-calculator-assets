@@ -74,19 +74,19 @@ $(document).ready(function() {
 
     // --- Material Multipliers ---
     const materialMultipliers = {
-        'Concrete': 1.0,
-        'Pavers': 1.1,
-        'Brick': 1.2,
-        'Stone': 1.2,
-        'Wood Deck': 1.3,
-        'Composite Decking': 1.1,
-        'Vinyl Siding': 0.9,
-        'Aluminum Siding': 1.0,
-        'Stucco': 1.1,
-        'Asphalt Shingles': 1.4,
-        'Tile Roof': 1.5,
-        'Metal Roof': 1.2,
-        'Other': 1.0 // Default or fallback
+        'Concrete': 0.15,
+        'Pavers': 0.25,
+        'Brick': 0.20,
+        'Stone': 0.35,
+        'Wood Deck': 0.20,
+        'Composite Decking': 0.20,
+        'Vinyl Siding': 0.12,
+        'Aluminum Siding': 0.15,
+        'Stucco': 0.15,
+        'Asphalt Shingles': 0.50,
+        'Tile Roof': 0.50,
+        'Metal Roof': 0.50,
+        'Other': 0.30 // Default or fallback
     };
 
     // --- Event Listeners --- (Form Submission - **MODIFIED for Calculation**)
@@ -112,11 +112,11 @@ $(document).ready(function() {
             const casement = parseInt(document.getElementById('casement').value) || 0;
             const picture = parseInt(document.getElementById('picture').value) || 0;
             const cutUp = parseInt(document.getElementById('cutUp').value) || 0; // NEW: Get cut-up windows
-            estimate += (doubleHung * 5) + (bay * 10) + (specialty * 15) + (sliding * 7) + (casement * 8) + (picture * 12) + (cutUp * 18); // NEW: Add cut-up window cost (example $18)
+            estimate += (doubleHung * 10) + (bay * 30) + (specialty * 20) + (sliding * 12) + (casement * 12) + (picture * 20) + (cutUp * 15); // NEW: Add cut-up window cost (example $18)
         }
         if (services.includes('gutterCleaning')) {
             const gutterFootage = parseInt(document.getElementById('gutterFootage').value) || 0;
-            estimate += gutterFootage * 2; // Example pricing
+            estimate += gutterFootage * 1; // Example pricing
         }
         if (services.includes('pressureWashing')) {
             let pwArea = 0;
