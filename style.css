@@ -1,57 +1,64 @@
 body {
-  font-family: 'Roboto', sans-serif; /* More modern font */
+  font-family: 'Nunito Sans', sans-serif; /* Modern, clean font */
   margin: 0;
-  padding: 40px 20px; /* Increased top padding for better spacing */
-  background-color: #f8f9fa; /* Softer background color */
-  color: #343a40; /* Darker, more readable text color */
-  line-height: 1.6; /* Improved line height for readability */
+  padding: 50px 20px;
+  background-color: #e0f7fa; /* Light teal background */
+  color: #333;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased; /* Improve font rendering on webkit */
+  -moz-osx-font-smoothing: grayscale; /* Improve font rendering on Firefox Mac */
 }
 
 .container {
-  max-width: 850px; /* Slightly wider container */
-  margin: 20px auto; /* Add some margin around container */
-  background-color: #ffffff; /* Pure white container background */
-  padding: 30px; /* Increased padding inside container */
-  border-radius: 8px; /* More rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer box shadow */
+  max-width: 900px; /* Wider container */
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px; /* More pronounced rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+  border: 1px solid #cddde7; /* Subtle border */
 }
 
 h1 {
-  font-size: 2.8em; /* Slightly larger main heading */
+  font-size: 3.2em; /* Larger, bolder title */
   text-align: center;
-  color: #212529; /* Darker heading color */
-  margin-bottom: 25px; /* More space below main heading */
-  letter-spacing: -0.02em; /* Slightly tighter letter spacing for headings */
-  font-weight: 700; /* Bold font weight for main heading */
+  color: #2a4d69; /* Deep blue title color */
+  margin-bottom: 35px;
+  letter-spacing: -0.03em;
+  font-weight: 800; /* Extra bold title */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05); /* Subtle text shadow */
 }
 
 h2 {
-  font-size: 1.8em; /* Reduced size for section headings */
-  text-align: left; /* Align section headings to the left */
-  color: #343a40; /* Consistent heading color */
-  margin-top: 25px; /* Top margin for section headings */
-  margin-bottom: 15px; /* Reduced bottom margin */
-  border-bottom: 2px solid #e0e0e0; /* Subtle bottom border for sections */
-  padding-bottom: 8px; /* Padding below section heading */
-  font-weight: 600; /* Slightly bolder section headings */
+  font-size: 2.2em; /* Larger section headings */
+  text-align: left;
+  color: #3b6978; /* Teal section heading color */
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #a7c5eb; /* More visible section border */
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .section {
-  margin-bottom: 25px; /* Increased section bottom margin */
-  padding: 20px; /* Increased padding inside sections */
-  border: 1px solid #e0e0e0; /* Lighter border color */
-  border-radius: 6px; /* Slightly more rounded section corners */
-  background-color: #fefefe; /* Slightly off-white section background */
+  margin-bottom: 30px;
+  padding: 30px;
+  border: none; /* Remove section border */
+  border-radius: 10px;
+  background-color: #f9f9f9; /* Light gray section background */
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.05); /* Subtle section shadow */
 }
 
 label {
-  display: inline-block;
-  width: 180px; /* Increased label width for better alignment */
-  text-align: right;
-  margin-right: 15px; /* Increased right margin for label spacing */
-  font-weight: 500; /* Slightly bolder labels */
-  color: #495057; /* Slightly darker label color */
-  margin-bottom: 8px; /* Added bottom margin to labels */
+  display: block; /* Stack labels above inputs */
+  width: auto; /* Auto width for labels */
+  text-align: left; /* Left-align labels */
+  margin-right: 0;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #444;
+  letter-spacing: 0.01em;
 }
 
 input[type="text"],
@@ -60,74 +67,104 @@ input[type="tel"],
 input[type="number"],
 textarea,
 select {
-  width: calc(100% - 205px); /* Adjusted width to account for wider labels and margins */
-  padding: 10px; /* Increased input padding */
-  border: 1px solid #ced4da; /* Softer input border color */
-  border-radius: 5px; /* Rounded input corners */
+  width: 100%; /* Full width inputs */
+  padding: 14px 16px; /* Larger input padding */
+  border: 2px solid #d4e7ee; /* Thicker input border */
+  border-radius: 8px;
   box-sizing: border-box;
-  font-size: 1em; /* Consistent font size for inputs */
-  color: #495057; /* Input text color */
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 20px; /* Increased input bottom margin */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #8ac4ff; /* Focus border color - bright blue */
+  box-shadow: 0 0 8px rgba(138, 196, 255, 0.5); /* Focus shadow - blue glow */
+  outline: none; /* Remove default focus outline */
 }
 
 input[type="checkbox"] {
-  margin-right: 8px; /* Slightly increased checkbox margin */
+  margin-right: 10px;
+  transform: scale(1.2); /* Slightly larger checkboxes */
 }
 
 button {
-  background-color: #007bff; /* Bootstrap primary blue button */
+  background-color: #5bc0de; /* Vibrant teal button color */
   color: white;
-  padding: 12px 25px; /* Adjusted button padding */
+  padding: 16px 30px; /* Larger button padding */
   border: none;
-  border-radius: 6px; /* Rounded button corners */
+  border-radius: 10px; /* Rounded button corners */
   cursor: pointer;
-  font-size: 1.1em; /* Slightly larger button font size */
+  font-size: 1.2em;
   display: block;
-  margin: 30px auto; /* Increased button margin */
-  font-weight: 600; /* Bolder button text */
-  transition: background-color 0.3s ease; /* Smooth hover transition */
+  margin: 35px auto;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Button shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Button transitions */
+  text-transform: uppercase; /* Uppercase button text */
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #46a3bf; /* Darker teal on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+button:active {
+  transform: translateY(0); /* No lift when active/pressed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow when active */
 }
 
 .serviceSection {
-  margin-top: 15px; /* Increased service section top margin */
-  padding: 15px; /* Increased padding */
-  border: 1px solid #e0e0e0;
-  border-radius: 6px; /* Rounded corners */
-  background-color: #fdfdfd; /* Slightly different background */
+  margin-top: 20px;
+  padding: 25px;
+  border: 2px solid #d4e7ee; /* Thicker service section border */
+  border-radius: 10px;
+  background-color: #fff; /* White service section background */
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.03); /* Inset shadow for service sections */
 }
 
 .window-type {
   display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Increased window type margin */
+  margin-bottom: 15px;
 }
 
 .window-type-image {
-  width: 60px;  /* Slightly larger window images */
-  height: 60px; /* Slightly larger window images */
-  margin-right: 15px; /* Increased image margin */
-  border: 1px solid #ced4da; /* Softer image border */
-  border-radius: 7px; /* Rounded image corners */
+  width: 70px;  /* Larger window images */
+  height: 70px; /* Larger window images */
+  margin-right: 20px;
+  border: 2px solid #d4e7ee; /* Thicker image border */
+  border-radius: 10px;
   object-fit: cover;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); /* Image shadow */
 }
 
 .surfaceDetails {
-  margin-left: 25px; /* Increased surface details margin */
-  padding: 15px; /* Increased padding */
-  border: 1px solid #e0e0e0;
-  border-radius: 6px; /* Rounded corners */
-  background-color: #fdfdfd; /* Slightly different background */
-  margin-top: 10px; /* Added top margin for surface details */
+  margin-left: 30px;
+  padding: 20px;
+  border: 2px solid #d4e7ee; /* Thicker surface details border */
+  border-radius: 10px;
+  background-color: #fff; /* White surface details background */
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.03); /* Inset shadow for surface details */
+  margin-top: 15px;
 }
 
 .error {
-  color: #dc3545; /* Bootstrap danger red for errors */
-  margin-top: 15px; /* Increased error margin */
-  padding: 15px; /* Increased error padding */
-  border: 1px solid #f8d7da; /* Lighter red border */
-  border-radius: 6px; /* Rounded error corners */
-  background-color: #f8d7da; /* Light red error background */
+  color: #fff; /* White error text */
+  margin-top: 20px;
+  padding: 20px;
+  border: none; /* Remove error border */
+  border-radius: 10px;
+  background-color: #ff6f61; /* Bright red error background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Error shadow */
+  font-weight: 600;
+  text-align: center; /* Center error text */
 }
